@@ -12,7 +12,7 @@ const connectDB =async ()=>{
         console.log(`MongoDB is connecting  : ${con.connection.host}`)
 
     }catch(error){
-        console.log(`error print  ${error.message} `)
+        console.log(`error connecting MONGODB  ${error.message} `)
     }
 }
 
