@@ -5,9 +5,7 @@ const Schema = mongoose.Schema;
 
 
 const userSchema = new Schema ({
-
     firstName:{
-
         type: String,
         required: true,
         trim: true
@@ -36,10 +34,7 @@ const userSchema = new Schema ({
         type: String,
         required: true
     },
-    confirmPassword:{
-        required: true,
-        type: String
-    },
+
 
     gender: {
          type : String,
