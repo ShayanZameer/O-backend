@@ -20,6 +20,7 @@ const JWT_SECRET= process.env.JWT_SECRET;
 exports.signUp= async (req, res)=>{
 
     try{
+      console.log("fuck");
         let success = false;
 
 
