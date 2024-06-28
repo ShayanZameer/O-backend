@@ -8,6 +8,8 @@ const BloodDonationSchema = new Schema({
     date_of_birth: { type: Date, required: true }, // Date of birth of the donor
     gender: { type: String, enum: ['male', 'female', 'other'], required: true }, // Gender of the donor
     last_donation_date: { type: Date }, // Date of last donation
+
+    phoneNumber:{type:String, required:true}
   });
   
   module.exports = mongoose.model('BloodDonation', BloodDonationSchema);

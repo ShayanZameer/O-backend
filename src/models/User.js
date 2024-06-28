@@ -40,7 +40,14 @@ const userSchema = new Schema ({
          type : String,
          enum: ['male','female','other'],
          required: true 
-    }
+    },
+
+    cart: [
+        {
+            medicine_id: { type: mongoose.Schema.Types.ObjectId, ref: 'MedicineDonation', required: true },
+            quantity: { type: Number, required: true },
+        }
+    ]
  
 });
 

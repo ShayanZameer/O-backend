@@ -1,4 +1,5 @@
 const BloodDonation = require('../models/Blood');
+const User = require('../models/User'); // Assuming your user model is imported here
 const { validationResult } = require('express-validator');
 
 // Controller function to create a new blood donation record
@@ -12,20 +13,27 @@ exports.createBloodDonation = async (req, res) => {
   const { blood_group, date_of_birth, gender, last_donation_date, description } = req.body;
 
   try {
-    // Create a new instance of BloodDonation with the provided data
+    // Fetch user details to get the phone number
+    const user = await User.findById(req.user.id);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const { phoneNumber } = user;
+
     const newDonation = new BloodDonation({
-      user_id: req.user.id, // Assuming user_id is available in req.user.id (from authentication middleware)
+      user_id: req.user.id, 
       blood_group,
       date_of_birth,
       gender,
       last_donation_date,
-      description
+      description,
+      phoneNumber 
     });
 
-    // Save the new donation record to the database
     await newDonation.save();
 
-    // Respond with a success message and the created donation object
     res.status(201).json({ message: 'Blood donation record created successfully', donation: newDonation });
   } catch (error) {
     console.error(error.message);

@@ -21,7 +21,11 @@ app.use(morgan('dev'));
 
 app.use("/api/auth", require("./src/routes/auth"));
 
-app.use("/api/blood", require("./src/routes/blood"))
+app.use("/api/blood", require("./src/routes/blood"));
+app.use("/api/medicine", require("./src/routes/medicinee"));
+
+
+app.use ("/api/cart", require("./src/routes/cart"));
 
 
 module.exports= app
