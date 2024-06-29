@@ -15,12 +15,18 @@ exports.createBloodDonation = async (req, res) => {
   try {
     // Fetch user details to get the phone number
     const user = await User.findById(req.user.id);
+    
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
     const { phoneNumber } = user;
+
+    console.log(user);
+    const donorName= user.firstName + user.lastName;
+
+    const status = "pending";
 
     const newDonation = new BloodDonation({
       user_id: req.user.id, 
@@ -29,7 +35,9 @@ exports.createBloodDonation = async (req, res) => {
       gender,
       last_donation_date,
       description,
-      phoneNumber 
+      phoneNumber ,
+      donorName,
+      status: status
     });
 
     await newDonation.save();
