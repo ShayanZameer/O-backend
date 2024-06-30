@@ -41,7 +41,7 @@ exports.createMedicine = async (req, res) => {
   }
 
   // Destructure the required fields from the request body
-  const { medicineName, quantity, expiryDate, description } = req.body;
+  const { donorName,medicineName, quantity, expiryDate, description } = req.body;
   console.log("ahdkfh")
 
   console.log(req.body)
@@ -61,11 +61,14 @@ if(req.file){
 }
     const newDonation = new MedicineDonation({
       user_id: req.user.id,
+      donorName,
       medicineName,
       quantity,
       expiryDate,
       description,
-      image: imageUrl || '', 
+      image: imageUrl || '',
+      status:"pending",
+      isExpired:false
     });
 
     await newDonation.save();

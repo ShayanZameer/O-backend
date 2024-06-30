@@ -7,12 +7,12 @@ console.log(JWT_SECRET);
 
 const fetchUser = (req, res, next)=>{
 
-    // const token = req.header("auth-token");
-    const token = req.header('Authorization').replace('Bearer ', '');
+    const token = req.header("auth-token");
 
 
     if(!token){
-        res.status(401).send({error:"please authenticate a toke"})
+        res.status(401).send({error:"please authenticate a token"})
+        return;
     }
 
     try{
@@ -24,7 +24,8 @@ const fetchUser = (req, res, next)=>{
         next();
 
     }catch(error){
-        res.status(401).send({error:" please authenticate a valid token"})
+        res.status(401).send({error:" please authenticate a valid token"});
+        return;
     }
 
     
